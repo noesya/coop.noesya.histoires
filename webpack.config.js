@@ -9,7 +9,7 @@ module.exports = [{
     watch: false,
     entry: path.join(__dirname, '_js', 'main'),
     output: {
-        filename: '[name].js',
+        filename: 'app.js',
         path: path.resolve(__dirname, 'assets/js')
     },
     module: {

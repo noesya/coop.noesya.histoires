@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html lang="{{ page.lang | default: site.lang | default: "fr" }}">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title>{{ page.title }} - {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
-  </head>
-  <body>
-    {% include scene-loader.html %}
-    {{ content }}
-  </body>
-  <script src="/assets/js/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% include seo.html %}
+
+    <!-- Preload -->
+    <link rel="preload" as="font" href="https://assets.noesya.coop/fonts/signifier/signifier-web-regular.woff2" type="font/woff2" crossOrigin="anonymous">
+    <link rel="preload" as="font" href="https://assets.noesya.coop/fonts/signifier/signifier-web-regular-italic.woff2" type="font/woff2" crossOrigin="anonymous">
+    <link rel="preload" as="font" href="https://assets.noesya.coop/fonts/soehne/soehne-web-buch.woff2" type="font/woff2" crossOrigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+  </head>
+  <body class="is-loading">
+    <main aria-label="Content" class="{{ page.class | default: layout.class }}">
+      {{ content }}
+    </main>
+    <script src="/assets/js/app.js" async defer></script>
+  </body>
 </html>
