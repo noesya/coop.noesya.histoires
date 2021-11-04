@@ -76,14 +76,6 @@ export default class SceneBase {
     setHelpers () {
         this.gridHelper = new GridHelper(100, 10);
         this.scene.add(this.gridHelper);
-
-        const cube = new Mesh(
-            new BoxGeometry(10, 10, 10),
-            new MeshBasicMaterial({ color: 0x003300 })
-        );
-
-        cube.position.set(45, 5, -45);
-        this.scene.add(cube);
     }
 
     setEnvironmentBox (texture) {

@@ -26,7 +26,7 @@ export default class EnvironmentBox {
         this.texture.dispose();
         pmremGenerator.dispose();
 
-        this.init();
+        // this.init();
     }
 
     init () {

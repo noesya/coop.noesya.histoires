@@ -1,6 +1,7 @@
 import { Mesh, SphereBufferGeometry, MeshStandardMaterial } from 'three'
 import SceneBase from './Scene/SceneBase';
 import LoadManager from './Loader/LoadManager';
+import PointsCloud from './Scene/PointsCloud';
 import ASSETS from './assets';
 import SETTINGS from './settings';
 
@@ -13,7 +14,7 @@ export default class SceneView extends SceneBase {
         // HELPERS
         if (SETTINGS.DEBUG) {
             this.setControls();
-            this.setHelpers();
+            // this.setHelpers();
         }
     }
 
@@ -46,27 +47,14 @@ export default class SceneView extends SceneBase {
     setup () {
         // Remove loader
         document.querySelector('.js-scene-loader').style.display = 'none';
-
         this.setEnvironmentBox(LoadManager.getFile(ASSETS.studio));
-
-        this.addTestBox();
+        this.points = new PointsCloud(this.scene);
         this.isReady = true;
-    }
-
-    addTestBox () {
-        const sphere = new Mesh(
-            new SphereBufferGeometry(1, 32, 32),
-            new MeshStandardMaterial({
-                color: 0xDDDDDD,
-                metalness: 1,
-                roughness: 0.3
-            })
-        );
-
-        this.scene.add(sphere);
     }
 
     update () {
         if (!this.isReady) return null;
+
+        this.points.animate();
     }
 }
