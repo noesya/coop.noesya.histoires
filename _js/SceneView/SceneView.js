@@ -1,9 +1,10 @@
 import { Mesh, SphereBufferGeometry, MeshStandardMaterial } from 'three'
 import SceneBase from './Scene/SceneBase';
 import LoadManager from './Loader/LoadManager';
-import PointsCloud from './Scene/PointsCloud';
 import ASSETS from './assets';
+import PointsCloud from './Scene/PointsCloud';
 import SETTINGS from './settings';
+import Constellation from './Scene/Constellation';
 
 export default class SceneView extends SceneBase {
     isReady = false;
@@ -49,6 +50,7 @@ export default class SceneView extends SceneBase {
         document.querySelector('.js-scene-loader').style.display = 'none';
         this.setEnvironmentBox(LoadManager.getFile(ASSETS.studio));
         this.points = new PointsCloud(this.scene);
+        this.constellation = new Constellation(this.scene);
         this.isReady = true;
     }
 
@@ -56,5 +58,6 @@ export default class SceneView extends SceneBase {
         if (!this.isReady) return null;
 
         this.points.animate();
+        this.constellation.animate();
     }
 }

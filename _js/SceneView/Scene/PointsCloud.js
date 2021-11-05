@@ -5,6 +5,8 @@ import {
     PointsMaterial,
     Group
 } from 'three';
+import LoadManager from '../Loader/LoadManager';
+import ASSETS from '../assets';
 
 export default class PointsClouds {
     constructor(scene) {
@@ -17,6 +19,7 @@ export default class PointsClouds {
         const cloudsLength = 50;
         this.group = new Group();
         this.scene.add( this.group );
+        this.texture = LoadManager.getFile(ASSETS.star);
 
         for(let i = 0; i < cloudsLength; i += 1) {
             this.addCloud();
@@ -40,7 +43,7 @@ export default class PointsClouds {
 
         geometry.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
 
-        material = new PointsMaterial( { size: 0.4, sizeAttenuation: true, transparent: true } );
+        material = new PointsMaterial( { size: 2, sizeAttenuation: true, map: this.texture, transparent: true } );
         // material.color.setHSL(Math.random(), Math.random(), Math.random());
         const particles = new Points( geometry, material );
 
