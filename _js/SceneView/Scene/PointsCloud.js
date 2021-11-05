@@ -60,5 +60,6 @@ export default class PointsClouds {
             cloud.rotation.y += 0.0001 * (i % 5 + 1)
             cloud.material.opacity = Math.min(0.4, Math.sin((this.tick + i * 100) / 100));
         });
+        
     }
 }
