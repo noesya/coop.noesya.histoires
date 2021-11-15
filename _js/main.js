@@ -14,7 +14,4 @@ const main = {
     }
   }
 };
-
-main.init();
-
-
+window.addEventListener('load', () => main.init());

@@ -1,7 +1,15 @@
+import {Howl, Howler} from 'howler';
+
 export default class AudioLine {
-    constructor(audio) {
+    constructor(audio, analyse = false) {
         this.audio = audio;
 
+        if (analyse) {
+            // this.setup();
+        }
+    }
+    setup() {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
         this.context = new AudioContext();
 
         this.analyser = this.context.createAnalyser();

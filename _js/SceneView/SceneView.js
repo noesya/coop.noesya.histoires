@@ -12,7 +12,6 @@ export default class SceneView extends SceneBase {
     isReady = false;
     init () {
         super.init();
-        this.load();
 
         // HELPERS
         if (SETTINGS.DEBUG) {
@@ -45,6 +44,8 @@ export default class SceneView extends SceneBase {
         });
 
         LoadManager.load(Object.values(ASSETS));
+
+        this.story.onSceneLoaded();
     }
 
     setup () {

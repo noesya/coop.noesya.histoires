@@ -40,10 +40,6 @@ export default class SolarSystem {
         this.create();
         this.wire();
 
-        // this.particles.position.x = 35;
-        // this.particles.position.y = 15;
-
-        // this.particles.scale.setScalar(1.5);
     }
     create() {
         const vertices = [];
@@ -104,8 +100,8 @@ export default class SolarSystem {
 
         this.particles.rotation.y = Math.sin((this.tick * 100) / 10000) * 0.001;
 
-        this.lineMaterial.opacity = this.view.story.audioManager.voiceLine.data[40] / 256 / 2 + 0.2;
-        this.pointMaterial.size = this.view.story.audioManager.voiceLine.data[40] / 256 + 2;
+        // this.lineMaterial.opacity = this.view.story.audioManager.voiceLine.data[40] / 256 / 2 + 0.2;
+        // this.pointMaterial.size = this.view.story.audioManager.voiceLine.data[40] / 256 + 2;
     }
 
     get position (){

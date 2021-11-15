@@ -6,7 +6,7 @@
     </div>
 
     {%- assign next_index = forloop.index | plus: 1 -%}
-    {% if next_index <= page.screens.size && orloop.index > 1%}
+    {% if next_index <= page.screens.size && forloop.index > 1%}
         {% include buttons/next-button.html next_index=next_index %}
     {% endif %}
 </section>

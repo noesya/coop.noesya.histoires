@@ -6,5 +6,9 @@ layout: default
     {% include screens/screen.html screen=screen %}
 {% endfor %}
 
-<audio class="js-voice" preload src="{{ page.audio.voice.src }}" data-steps="{{ page.audio.voice.steps | join: ','}}"></audio>
-<audio class="js-music" preload src="{{ page.audio.music.src }}"></audio>
+<audio class="js-voice" data-steps="{{ page.audio.voice.steps | join: ','}}" disableRemotePlayback>
+    <source src="{{ page.audio.voice.src }}" type="audio/mpeg">
+</audio>
+<audio class="js-music" disableRemotePlayback>
+    <source src="{{ page.audio.music.src }}" type="audio/mpeg">
+</audio>

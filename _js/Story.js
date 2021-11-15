@@ -6,14 +6,15 @@ import AudioManager from './Audio/AudioManager';
 export default class Story{
     constructor(app) {
         this.app = app;
-        this.audioManager = new AudioManager(this);
         this.sceneView = new SceneView(this);
+        this.audioManager = new AudioManager(this);
         this.screenManager = new ScreenManager(this);
-        this.update();
         this.bind();
         this.state = {
             isPlaying: false
         }
+
+        this.sceneView.load();
     }
     bind() {
         document.querySelector('.js-start').addEventListener('click', () => {
@@ -46,8 +47,11 @@ export default class Story{
     }
     update() {
         requestAnimationFrame(this.update.bind(this));
-        this.audioManager.update();
         this.sceneView.render();
+        this.audioManager.update();
         TWEEN.update();
+    }
+    onSceneLoaded() {
+        this.update();
     }
 }
