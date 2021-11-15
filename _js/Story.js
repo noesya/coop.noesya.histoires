@@ -7,7 +7,7 @@ export default class Story{
     constructor(app) {
         this.app = app;
         this.audioManager = new AudioManager(this);
-        this.view = new SceneView(this);
+        this.sceneView = new SceneView(this);
         this.screenManager = new ScreenManager(this);
         this.update();
         this.bind();
@@ -18,6 +18,7 @@ export default class Story{
     bind() {
         document.querySelector('.js-start').addEventListener('click', () => {
             this.toggle();
+            this.sceneView.next();
         });
 
         window.addEventListener('keydown', (e) => {
@@ -28,10 +29,10 @@ export default class Story{
     }
     next() {
         this.screenManager.next();
+        this.sceneView.next();
     }
     toggle() {
         this.state.isPlaying = !this.state.isPlaying;
-
         if (this.state.isPlaying) {
             this.audioManager.play();
         } else {
@@ -41,7 +42,7 @@ export default class Story{
     update() {
         requestAnimationFrame(this.update.bind(this));
         this.audioManager.update();
-        this.view.render();
+        this.sceneView.render();
         TWEEN.update();
     }
 }

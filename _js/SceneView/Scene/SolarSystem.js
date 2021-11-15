@@ -22,24 +22,28 @@ export default class SolarSystem {
     }
 
     init() {
+        const points = 12;
+
         this.texture = LoadManager.getFile(ASSETS.star);
 
-        this.coords = [
-            [-4.7, -0.4, 1],
-            [-5.4, -3, 0.3],
-            [-6.4, -3.5, -1],
-            [-18.3, -6.8, 0.4],
-            [-20.4, -7.5, 1.1],
-            [-20.9, -9.3, 0.2],
-            [-25, -12.2, 0]
-        ];
+        this.coords = [];
+
+        for (let i = 0; i < points; i += 1) {
+            this.coords.push([
+                5*i + Math.random(), 
+                3*i + Math.random() * 5, 
+                Math.random() * 2
+            ]);
+        }
+
         this.compute();
         this.create();
         this.wire();
 
-        this.particles.position.x = 20;
+        // this.particles.position.x = 35;
+        // this.particles.position.y = 15;
 
-        this.particles.scale.setScalar(1.5);
+        // this.particles.scale.setScalar(1.5);
     }
     create() {
         const vertices = [];
@@ -59,8 +63,8 @@ export default class SolarSystem {
         });
 
         this.particles = new Points( this.geometry, this.pointMaterial );
-        this.particles.position.x = -this.width / 2;
-        this.particles.position.y = this.height / 2;
+        // this.particles.position.x = -this.width / 2;
+        // this.particles.position.y = this.height / 2;
         this.scene.add(this.particles);
     }
     compute() {
@@ -69,7 +73,6 @@ export default class SolarSystem {
         minX = Math.min.apply(Math, this.coords.map(p => p[0]));
         maxY = Math.max.apply(Math, this.coords.map(p => p[1]));
         minY = Math.min.apply(Math, this.coords.map(p => p[1]));
-        console.log(minX, maxX, minY, maxY);
         this.width = Math.abs(minX - maxX);
         this.height = Math.abs(minY - maxY);
     }
@@ -101,8 +104,11 @@ export default class SolarSystem {
 
         this.particles.rotation.y = Math.sin((this.tick * 100) / 10000) * 0.001;
 
-
         this.lineMaterial.opacity = this.view.story.audioManager.voiceLine.data[40] / 256 / 2 + 0.2;
         this.pointMaterial.size = this.view.story.audioManager.voiceLine.data[40] / 256 + 2;
+    }
+
+    get position (){
+        return this.particles.position;
     }
 }

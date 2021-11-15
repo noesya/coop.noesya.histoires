@@ -50,6 +50,9 @@ screens:
       alt: Atelier
       layout: floating
       caption: >
+        John est artiste, et graveur sur bois.
+
+
         John a aussi été maire de Dawson City mais c'est une autre histoire
 
       # CHAPTER 2

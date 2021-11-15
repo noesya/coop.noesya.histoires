@@ -6,6 +6,7 @@ import PointsCloud from './Scene/PointsCloud';
 import SETTINGS from './settings';
 import Constellation from './Scene/Constellation';
 import SolarSystem from './Scene/SolarSystem';
+import { Tween, Easing } from '@tweenjs/tween.js';
 
 export default class SceneView extends SceneBase {
     isReady = false;
@@ -54,6 +55,16 @@ export default class SceneView extends SceneBase {
         // this.constellation = new Constellation(this.scene);
         this.system = new SolarSystem(this);
         this.isReady = true;
+    }
+
+    next() {
+        const tween = new Tween(this.system.position)
+            .to({
+                x: this.system.position.x - 5,
+                y: this.system.position.y - 3
+            }, 1000)
+            .easing(Easing.Quadratic.Out)
+            .start();
     }
 
     update () {

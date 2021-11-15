@@ -1,4 +1,4 @@
-import TWEEN from '@tweenjs/tween.js';
+import {Tween, Easing} from '@tweenjs/tween.js';
 
 export default class Screen {
     constructor (selector, opened = false) {
@@ -31,10 +31,10 @@ export default class Screen {
 
         this.dom.classList.add('is-visible');
 
-        const tween = new TWEEN.Tween(this.dom.style)
+        const tween = new Tween(this.dom.style)
             .to({opacity: 1}, 500)
             .delay(1000)
-            .easing(TWEEN.Easing.Quadratic.Out)
+            .easing(Easing.Quadratic.Out)
             .start()
     }
 
@@ -45,12 +45,12 @@ export default class Screen {
 
         this.isOpened = false;
 
-        const tween = new TWEEN.Tween(this.dom.style)
+        const tween = new Tween(this.dom.style)
             .to({opacity: 0}, 350)
             .onComplete(() => {
                 this.dom.classList.remove('is-visible');
             })
-            .easing(TWEEN.Easing.Quadratic.Out)
+            .easing(Easing.Quadratic.Out)
             .start()
     }
 }

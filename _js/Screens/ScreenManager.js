@@ -28,7 +28,6 @@ export default class ScreenManager {
     bindEvents () {
         document.querySelectorAll('[data-open-screen]').forEach((btn) => {
             let screen = btn.getAttribute('data-open-screen');
-            console.log(screen)
             btn.addEventListener('click', this.open.bind(this, screen));
         });
     }
