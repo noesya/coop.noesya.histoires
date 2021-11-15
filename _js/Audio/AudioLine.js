@@ -1,13 +1,20 @@
 import {Howl, Howler} from 'howler';
 
 export default class AudioLine {
-    constructor(audio, analyse = false) {
-        this.audio = audio;
+    constructor(data, analyse = false, manager) {
+        this.raw = data;
+        this.audio = new Howl({src: data.src});
+        this.steps = data.steps;
+        this.manager = manager;
 
-        if (analyse) {
-            // this.setup();
+        if (this.steps) {
+            this.setup();
         }
     }
+    setup() {
+        // this.stepEvent = new CustomEvent('step');
+    }
+    /*
     setup() {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         this.context = new AudioContext();
@@ -27,27 +34,22 @@ export default class AudioLine {
             this.steps = this.steps.split(',');
             this.stepEvent = new CustomEvent('step');
         }
-    }
+    } 
+    */
     play() {
-        const playPromise = this.audio.play();
-        playPromise.then(function() {
-            console.log('played !')
-        }).catch(function(error) {
-            console.log(error);
-            // Automatic playback failed.
-            // Show a UI element to let the user manually start playback.
-        });
+        this.audio.play();
     }
     pause() {
         this.audio.pause();
     }
     update() {
-        this.analyser.getByteFrequencyData(this.data);
+        // this.analyser.getByteFrequencyData(this.data);
         
-        if (this.steps.length > 0) {
+        if (this.steps) {
             if (this.audio.currentTime > this.steps[0]) {
-                this.audio.dispatchEvent(this.stepEvent);
+                // this.audio.dispatchEvent(this.stepEvent);
                 this.steps.shift();
+                this.manager.onVoiceLineStepped();
             }
         }
     }

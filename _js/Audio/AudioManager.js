@@ -3,13 +3,19 @@ import AudioLine from "./AudioLine";
 export default class AudioManager {
     constructor(story) {
         this.story = story;
-        this.voiceLine = new AudioLine(document.querySelector('.js-voice'), true);
-        this.musicLine = new AudioLine(document.querySelector('.js-music'));
-        this.musicLine.audio.volume = 0.5;
+        this.data = document.querySelector('.story').getAttribute('data-audio');
+        this.data = JSON.parse(this.data);
 
-        this.voiceLine.audio.addEventListener('step', () => {
-            this.story.next();
-        });
+        this.voiceLine = new AudioLine(this.data.voice, true, this);
+        this.musicLine = new AudioLine(this.data.music, false, this);
+        // this.musicLine.audio.volume = 0.5;
+
+        // this.voiceLine.audio.addEventListener('step', () => {
+        //     this.story.next();
+        // });
+    }
+    onVoiceLineStepped() {
+        this.story.next();
     }
     play() {
         this.voiceLine.play();

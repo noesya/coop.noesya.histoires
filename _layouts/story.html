@@ -1,14 +1,8 @@
 ---
 layout: default
 ---
-
-{% for screen in page.screens %}
-    {% include screens/screen.html screen=screen %}
-{% endfor %}
-
-<audio class="js-voice" data-steps="{{ page.audio.voice.steps | join: ','}}" disableRemotePlayback>
-    <source src="{{ page.audio.voice.src }}" type="audio/mpeg">
-</audio>
-<audio class="js-music" disableRemotePlayback>
-    <source src="{{ page.audio.music.src }}" type="audio/mpeg">
-</audio>
+<div class="story" data-audio='{{ page.audio | jsonify }}'>
+    {% for screen in page.screens %}
+        {% include screens/screen.html screen=screen %}
+    {% endfor %}
+</div>

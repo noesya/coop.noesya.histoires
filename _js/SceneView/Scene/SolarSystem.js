@@ -100,8 +100,10 @@ export default class SolarSystem {
 
         this.particles.rotation.y = Math.sin((this.tick * 100) / 10000) * 0.001;
 
-        // this.lineMaterial.opacity = this.view.story.audioManager.voiceLine.data[40] / 256 / 2 + 0.2;
-        // this.pointMaterial.size = this.view.story.audioManager.voiceLine.data[40] / 256 + 2;
+        if (this.view.story.audioManager.voiceLine.data) {
+            this.lineMaterial.opacity = this.view.story.audioManager.voiceLine.data[40] / 256 / 2 + 0.2;
+            this.pointMaterial.size = this.view.story.audioManager.voiceLine.data[40] / 256 + 2;
+        }
     }
 
     get position (){
