@@ -1,6 +1,7 @@
 export default class AudioLine {
     constructor(audio) {
         this.audio = audio;
+
         this.context = new AudioContext();
 
         this.analyser = this.context.createAnalyser();
@@ -20,7 +21,14 @@ export default class AudioLine {
         }
     }
     play() {
-        this.audio.play();
+        const playPromise = this.audio.play();
+        playPromise.then(function() {
+            console.log('played !')
+        }).catch(function(error) {
+            console.log(error);
+            // Automatic playback failed.
+            // Show a UI element to let the user manually start playback.
+        });
     }
     pause() {
         this.audio.pause();

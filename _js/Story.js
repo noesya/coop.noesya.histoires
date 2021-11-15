@@ -17,19 +17,24 @@ export default class Story{
     }
     bind() {
         document.querySelector('.js-start').addEventListener('click', () => {
-            this.toggle();
+            this.start();
             this.sceneView.next();
         });
 
         window.addEventListener('keydown', (e) => {
             if (e.key == ' ') {
-                this.toggle();
+                // this.toggle();
             }
         })
     }
     next() {
         this.screenManager.next();
         this.sceneView.next();
+    }
+    start() {
+        if (this.state.isPlaying) return;
+        this.state.isPlaying = true;
+        this.audioManager.play();
     }
     toggle() {
         this.state.isPlaying = !this.state.isPlaying;
