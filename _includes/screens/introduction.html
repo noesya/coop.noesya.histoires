@@ -1,0 +1,8 @@
+<div class="introduction">
+    <div>
+        <h1>{{ screen.head }}</h1>
+        <h2>{{ screen.subhead }}</h2>
+        {%- assign next_id =  'screen--' | append: page.title | append: '-' | append: 2 | slugify -%}
+        <div class="btn js-start" data-open-screen="{{ next_id }}">Démarrer l'expérience</div>
+    </div>
+</div>

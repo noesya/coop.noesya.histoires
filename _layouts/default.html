@@ -15,9 +15,10 @@
     <link rel="stylesheet" href="/assets/css/main.css">
   </head>
   <body class="is-loading">
+    {% include scene-loader.html %}
     <main aria-label="Content" class="{{ page.class | default: layout.class }}">
       {{ content }}
     </main>
-    <script src="/assets/js/app.js" async defer></script>
+    <script src="/assets/js/app.js"></script>
   </body>
 </html>

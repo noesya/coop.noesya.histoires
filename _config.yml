@@ -10,6 +10,8 @@ theme: "jekyll-theme-noesya"
 collections:
   pages:
     output: true
+  stories:
+    output: true
 
 plugins:
   - jekyll-minifier

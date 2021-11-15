@@ -1,9 +1,20 @@
 import { WEBGL } from './webgl'
-import SceneView from './SceneView/SceneView'
+import Story from './Story';
 
-if (WEBGL.isWebGLAvailable()) {
-    new SceneView()
-} else {
-  let warning = WEBGL.getWebGLErrorMessage()
-  document.body.appendChild(warning)
-}
+const main = {
+  init() {
+    this.setup();
+  },
+  setup() {
+    if (WEBGL.isWebGLAvailable()) {
+      this.story = new Story(this);
+    } else {
+      let warning = WEBGL.getWebGLErrorMessage()
+      document.body.appendChild(warning)
+    }
+  }
+};
+
+main.init();
+
+

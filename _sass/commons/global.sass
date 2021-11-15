@@ -1,0 +1,41 @@
+*
+    box-sizing: border-box
+
+body
+    -moz-osx-font-smoothing: grayscale
+    -webkit-font-smoothing: antialiased
+    background-color: black
+    color: white
+    text-rendering: geometricPrecision
+
+::selection
+    background: rgba(white, .7)
+    color: black
+    text-shadow: none
+
+::-moz-selection
+    background: rgba(white, .7)
+    color: black
+    text-shadow: none
+
+img
+    height: auto
+    max-width: 100%
+    &::selection
+        background: transparent
+    &::-moz-selection
+        background: transparent
+
+*:focus-visible
+    outline-color: gray
+    outline-offset: 5px
+    outline-style: dashed
+    outline-width: 1px
+
+@media (prefers-reduced-motion: no-preference)
+    *:focus-visible
+        transition: outline-offset .3s ease
+
+picture
+    img
+        height: auto

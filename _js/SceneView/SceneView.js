@@ -5,6 +5,7 @@ import ASSETS from './assets';
 import PointsCloud from './Scene/PointsCloud';
 import SETTINGS from './settings';
 import Constellation from './Scene/Constellation';
+import SolarSystem from './Scene/SolarSystem';
 
 export default class SceneView extends SceneBase {
     isReady = false;
@@ -50,7 +51,8 @@ export default class SceneView extends SceneBase {
         document.querySelector('.js-scene-loader').style.display = 'none';
         this.setEnvironmentBox(LoadManager.getFile(ASSETS.studio));
         this.points = new PointsCloud(this.scene);
-        this.constellation = new Constellation(this.scene);
+        // this.constellation = new Constellation(this.scene);
+        this.system = new SolarSystem(this.scene);
         this.isReady = true;
     }
 
@@ -58,6 +60,7 @@ export default class SceneView extends SceneBase {
         if (!this.isReady) return null;
 
         this.points.animate();
-        this.constellation.animate();
+        // this.constellation.animate();
+        this.system.animate();
     }
 }

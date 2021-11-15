@@ -1,0 +1,10 @@
+media_queries:
+  mobile: 'max-width: 576px'
+  tablet: 'min-width: 576px'
+  laptop: 'min-width: 992px'
+  desktop: 'min-width: 1200px'
+
+presets:
+  default:
+    formats: [webp, original] # Order matters!
+    dimension_attributes: true

@@ -13,7 +13,8 @@ import Lights from './Lights';
 import EnvironmentBox from './EnvironmentBox';
 
 export default class SceneBase {
-    constructor () {
+    constructor (story) {
+        this.story = story;
         this.init();
     }
 
@@ -30,7 +31,6 @@ export default class SceneBase {
         this.setScene();
         this.setLights();
         this.setCamera();
-        this.render();
 
         // EVENTS
         this.bindEvents();
@@ -93,7 +93,6 @@ export default class SceneBase {
     }
 
     render () {
-        requestAnimationFrame(this.render.bind(this));
         if (this.controls) this.controls.update();
         this.update();
         this.renderer.render(this.scene, this.camera);
