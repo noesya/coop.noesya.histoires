@@ -14,8 +14,9 @@ import {
 import LoadManager from '../Loader/LoadManager';
 import ASSETS from '../assets';
 export default class SolarSystem {
-    constructor(scene) {
-        this.scene = scene;
+    constructor(view) {
+        this.view = view;
+        this.scene = view.scene;
         this.init();
         this.tick = 0;
     }
@@ -42,7 +43,6 @@ export default class SolarSystem {
     }
     create() {
         const vertices = [];
-        let material;
 
         this.coords.forEach(p => {
             vertices.push(p[0], p[1], p[2]);
@@ -51,14 +51,14 @@ export default class SolarSystem {
         this.geometry = new BufferGeometry();
         this.geometry.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
 
-        material = new PointsMaterial({
+        this.pointMaterial = new PointsMaterial({
             size: 2,
             sizeAttenuation: true,
             transparent: true,
             map: this.texture
         });
 
-        this.particles = new Points( this.geometry, material );
+        this.particles = new Points( this.geometry, this.pointMaterial );
         this.particles.position.x = -this.width / 2;
         this.particles.position.y = this.height / 2;
         this.scene.add(this.particles);
@@ -74,12 +74,12 @@ export default class SolarSystem {
         this.height = Math.abs(minY - maxY);
     }
     wire() {
-        const material = new LineBasicMaterial({
+        this.lineMaterial = new LineBasicMaterial({
             opacity: 0.5,
             transparent: true
         });
 
-        this.line = new Line( this.geometry, material );
+        this.line = new Line( this.geometry, this.lineMaterial );
 
         this.particles.add(this.line);
         const positions = this.line.geometry.attributes.position.array;
@@ -100,5 +100,9 @@ export default class SolarSystem {
         this.geometry.attributes.position.needsUpdate = true;
 
         this.particles.rotation.y = Math.sin((this.tick * 100) / 10000) * 0.001;
+
+
+        this.lineMaterial.opacity = this.view.story.audioManager.voiceLine.data[40] / 256 / 2 + 0.2;
+        this.pointMaterial.size = this.view.story.audioManager.voiceLine.data[40] / 256 + 2;
     }
 }

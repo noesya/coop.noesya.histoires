@@ -4,14 +4,14 @@ export default class AudioLine {
         this.context = new AudioContext();
 
         this.analyser = this.context.createAnalyser();
-        this.analyser.fftSize = 2048;
+        this.analyser.fftSize = 256;
 
         this.source = this.context.createMediaElementSource(this.audio);
         this.source.connect(this.analyser);
         this.source.connect(this.context.destination);
 
         this.data = new Uint8Array(this.analyser.frequencyBinCount);
-
+        this.analyser.getByteFrequencyData(this.data);
         this.steps = this.audio.getAttribute('data-steps');
 
         if (this.steps) {
@@ -27,7 +27,7 @@ export default class AudioLine {
     }
     update() {
         this.analyser.getByteFrequencyData(this.data);
-
+        
         if (this.steps.length > 0) {
             if (this.audio.currentTime > this.steps[0]) {
                 this.audio.dispatchEvent(this.stepEvent);

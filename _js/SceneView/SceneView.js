@@ -52,7 +52,7 @@ export default class SceneView extends SceneBase {
         this.setEnvironmentBox(LoadManager.getFile(ASSETS.studio));
         this.points = new PointsCloud(this.scene);
         // this.constellation = new Constellation(this.scene);
-        this.system = new SolarSystem(this.scene);
+        this.system = new SolarSystem(this);
         this.isReady = true;
     }
 
