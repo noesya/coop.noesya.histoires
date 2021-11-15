@@ -12,37 +12,42 @@
         visibility: visible
 
 .image
-    background: white
     img
         display: block
-    &--half, &--half-cover, &--half-bottom
-        height: 100%
-        position: absolute
-        right: 0
-        top: 0
-        width: 50%
+    @include media-breakpoint-down(md)
         img
+            margin: 30px auto 0
+            max-width: 90%
+    @include media-breakpoint-up(md)
+        background: white
+        &--half, &--half-cover, &--half-bottom
             height: 100%
-            margin: auto
-            object-fit: scale-down
-            width: 90%
-            
-    &--half-cover
-        img
-            height: 100%
-            object-fit: cover
-            width: 100%
-    &--half-bottom
-        img
-            height: 100%
-            object-fit: scale-down
-            object-position: bottom
-            width: 100%
-    &--floating
-        max-width: calc(60% - 120px)
-        position: absolute
-        right: 60px
-        top: 100px
+            position: absolute
+            right: 0
+            top: 0
+            width: 50%
+            img
+                height: 100%
+                margin: auto
+                object-fit: scale-down
+                width: 90%
+                
+        &--half-cover
+            img
+                height: 100%
+                object-fit: cover
+                width: 100%
+        &--half-bottom
+            img
+                height: 100%
+                object-fit: scale-down
+                object-position: bottom
+                width: 100%
+        &--floating
+            max-width: calc(60% - 120px)
+            position: absolute
+            right: 60px
+            top: 100px
 
 .portrait
     align-items: center

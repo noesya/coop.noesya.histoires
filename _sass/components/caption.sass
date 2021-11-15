@@ -1,9 +1,20 @@
 .caption
-    bottom: 100px
-    left: 60px
-    max-width: calc(50% - 120px)
+    bottom: 20px
+    padding: 25px
     position: fixed
-    width: 520px
-    p
-        font-size: px2rem(43)
-        line-height: px2rem(60)
+    width: 100%
+    @include media-breakpoint-down(md)
+        p
+            background: rgba(black, 0.6)
+            padding: 10px
+    @include media-breakpoint-up(md)
+        bottom: 100px
+        max-width: calc(50% - 120px)
+        padding: 60px
+        right: auto
+        width: 520px
+        p
+            font-size: px2rem(43)
+            line-height: px2rem(60)
+
+
