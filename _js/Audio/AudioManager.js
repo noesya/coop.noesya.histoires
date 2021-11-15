@@ -1,4 +1,5 @@
 import AudioLine from "./AudioLine";
+import { Howler } from 'howler';
 
 export default class AudioManager {
     constructor(story) {
@@ -8,11 +9,19 @@ export default class AudioManager {
 
         this.voiceLine = new AudioLine(this.data.voice, true, this);
         this.musicLine = new AudioLine(this.data.music, false, this);
-        // this.musicLine.audio.volume = 0.5;
+        this.voiceLine.audio.volume(0.6);
+        this.musicLine.audio.volume(0.2);
 
         // this.voiceLine.audio.addEventListener('step', () => {
         //     this.story.next();
         // });
+        this.setup();
+    }
+    setup() {
+        this.analyser = Howler.ctx.createAnalyser();
+        Howler.masterGain.connect(this.analyser);
+        this.analyser.connect(Howler.ctx.destination);
+        this.data = new Uint8Array(this.analyser.frequencyBinCount);
     }
     onVoiceLineStepped() {
         this.story.next();
@@ -25,6 +34,13 @@ export default class AudioManager {
         this.voiceLine.pause();
     }
     update() {
-        // this.voiceLine.update();
+        this.analyser.getByteFrequencyData(this.data);
+        this.voiceLine.update();
+        this.average();
+    }
+    average() {
+        const sum = this.data.reduce((a, b) => a + b, 0);
+        this.averageFrq = (sum / this.data.length) || 0;
+        this.averageFrq /= 256;
     }
 }

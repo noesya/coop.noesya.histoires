@@ -1,4 +1,4 @@
-import {Howl, Howler} from 'howler';
+import {Howl} from 'howler';
 
 export default class AudioLine {
     constructor(data, analyse = false, manager) {
@@ -6,15 +6,7 @@ export default class AudioLine {
         this.audio = new Howl({src: data.src});
         this.steps = data.steps;
         this.manager = manager;
-
-        if (this.steps) {
-            this.setup();
-        }
     }
-    setup() {
-        // this.stepEvent = new CustomEvent('step');
-    }
-    /*
     setup() {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         this.context = new AudioContext();
@@ -29,13 +21,7 @@ export default class AudioLine {
         this.data = new Uint8Array(this.analyser.frequencyBinCount);
         this.analyser.getByteFrequencyData(this.data);
         this.steps = this.audio.getAttribute('data-steps');
-
-        if (this.steps) {
-            this.steps = this.steps.split(',');
-            this.stepEvent = new CustomEvent('step');
-        }
     } 
-    */
     play() {
         this.audio.play();
     }
@@ -43,8 +29,6 @@ export default class AudioLine {
         this.audio.pause();
     }
     update() {
-        // this.analyser.getByteFrequencyData(this.data);
-        
         if (this.steps) {
             if (this.audio.currentTime > this.steps[0]) {
                 // this.audio.dispatchEvent(this.stepEvent);
