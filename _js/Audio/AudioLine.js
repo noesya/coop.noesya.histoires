@@ -6,6 +6,7 @@ export default class AudioLine {
         this.audio = new Howl({src: data.src});
         this.steps = data.steps;
         this.manager = manager;
+        console.log(this.steps)
     }
     setup() {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -30,7 +31,7 @@ export default class AudioLine {
     }
     update() {
         if (this.steps) {
-            if (this.audio.currentTime > this.steps[0]) {
+            if (this.audio.seek() > this.steps[0]) {
                 // this.audio.dispatchEvent(this.stepEvent);
                 this.steps.shift();
                 this.manager.onVoiceLineStepped();

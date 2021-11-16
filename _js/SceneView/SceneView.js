@@ -59,6 +59,7 @@ export default class SceneView extends SceneBase {
     }
 
     next() {
+        // this.system.fadeOut();
         const tween = new Tween(this.system.position)
             .to({
                 x: this.system.position.x - 5,

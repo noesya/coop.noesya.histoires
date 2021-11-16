@@ -24,6 +24,7 @@ export default class AudioManager {
         this.data = new Uint8Array(this.analyser.frequencyBinCount);
     }
     onVoiceLineStepped() {
+        console.log('nnnn')
         this.story.next();
     }
     play() {
