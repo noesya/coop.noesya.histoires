@@ -59,31 +59,3 @@
     justify-content: center
     text-align: center
 
-.story
-    &::after
-        background: white
-        bottom: 0
-        content: ''
-        position: absolute
-        right: 0
-        top: 0
-        width: 50%
-        z-index: 0
-
-svg
-    display: none
-
-@keyframes scribble
-    0%
-        filter: url('#scribble--0')
-    25%
-        filter: url('#scribble--1')
-    50%
-        filter: url('#scribble--2')
-    75%
-        filter: url('#scribble--3')
-    100%
-        filter: url('#scribble--4')
-
-.caption
-    // animation: scribble .3s infinite
