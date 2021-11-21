@@ -54,19 +54,19 @@ export default class SceneView extends SceneBase {
         this.setEnvironmentBox(LoadManager.getFile(ASSETS.studio));
         this.points = new PointsCloud(this.scene);
         // this.constellation = new Constellation(this.scene);
-        this.system = new SolarSystem(this);
+        // this.system = new SolarSystem(this);
         this.isReady = true;
     }
 
     next() {
         // this.system.fadeOut();
-        const tween = new Tween(this.system.position)
-            .to({
-                x: this.system.position.x - 5,
-                y: this.system.position.y - 3
-            }, 5000)
-            .easing(Easing.Quadratic.InOut)
-            .start();
+        // const tween = new Tween(this.system.position)
+        //     .to({
+        //         x: this.system.position.x - 5,
+        //         y: this.system.position.y - 3
+        //     }, 5000)
+        //     .easing(Easing.Quadratic.InOut)
+        //     .start();
     }
 
     update () {
@@ -74,6 +74,6 @@ export default class SceneView extends SceneBase {
 
         this.points.animate();
         // this.constellation.animate();
-        this.system.animate();
+        // this.system.animate();
     }
 }

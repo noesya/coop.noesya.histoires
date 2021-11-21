@@ -27,16 +27,15 @@
     padding: 50px
     position: fixed
     text-align: center
-    // top: 50%
     transform: translate(-50%, 0)
-    transition: opacity .5s ease-in-out
+    transition: opacity .35s
     width: 100%
-    
-    span
-        opacity: 0
+    will-change: opacity
+    z-index: 2
     &.is-active
         opacity: 1
         span
+            opacity: 0
             @for $i from 1 through 400
                 &:nth-child(#{$i}) 
                     animation: fadeIn 2s #{$i * 0.03}s forwards ease-in
@@ -44,9 +43,9 @@
 @keyframes fadeIn
     0%
         opacity: 0
-    30%
-        opacity: 0.7
-    60%
+    40%, 60%
+        opacity: 1
+    80%
         opacity: 0.5
     100%
         opacity: 1
