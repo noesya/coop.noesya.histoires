@@ -102,7 +102,7 @@ export default class SolarSystem {
 
         if (this.view.story.audioManager.data) {
             this.lineMaterial.opacity = this.view.story.audioManager.averageFrq + 0.5;
-            this.pointMaterial.size = this.view.story.audioManager.averageFrq * 7 + 2;
+            this.pointMaterial.size = this.view.story.audioManager.averageFrq * 3 + 0.5;
         }
     }
 

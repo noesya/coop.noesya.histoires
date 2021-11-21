@@ -1,20 +1,55 @@
+// .caption
+//     bottom: 20px
+//     padding: 25px
+//     position: fixed
+//     width: 100%
+//     @include media-breakpoint-down(md)
+//         p
+//             background: rgba(black, 0.6)
+//             padding: 10px
+//     @include media-breakpoint-up(md)
+//         bottom: 100px
+//         max-width: calc(50% - 120px)
+//         padding: 60px
+//         right: auto
+//         width: 520px
+//         p
+//             font-size: px2rem(43)
+//             line-height: px2rem(60)
+
+
 .caption
-    bottom: 20px
-    padding: 25px
+    bottom: 50px
+    font-size: px2rem(22)
+    left: 50%
+    line-height: px2rem(30)
+    opacity: 0
+    padding: 50px
     position: fixed
+    text-align: center
+    // top: 50%
+    transform: translate(-50%, 0)
+    transition: opacity .5s ease-in-out
     width: 100%
-    @include media-breakpoint-down(md)
-        p
-            background: rgba(black, 0.6)
-            padding: 10px
-    @include media-breakpoint-up(md)
-        bottom: 100px
-        max-width: calc(50% - 120px)
-        padding: 60px
-        right: auto
-        width: 520px
-        p
-            font-size: px2rem(43)
-            line-height: px2rem(60)
+    
+    span
+        opacity: 0
+    &.is-active
+        opacity: 1
+        span
+            @for $i from 1 through 200
+                &:nth-child(#{$i}) 
+                    animation: fadeIn 2s #{$i * 0.03}s forwards ease-in
+
+@keyframes fadeIn
+    0%
+        opacity: 0
+    30%
+        opacity: 0.7
+    60%
+        opacity: 0.5
+    100%
+        opacity: 1
+
 
 

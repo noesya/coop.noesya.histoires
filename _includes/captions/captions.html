@@ -1,0 +1,9 @@
+<div class="captions js-captions">
+    {% for screen in page.screens %}
+        {%- if screen.caption -%}
+        <div class="caption js-caption">
+            {{- screen.caption | markdownify -}}
+        </div>
+        {%- endif -%}
+    {% endfor %}
+</div>

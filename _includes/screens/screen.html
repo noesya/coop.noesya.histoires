@@ -1,12 +1,5 @@
 {%- assign id = 'screen-' | append: page.title | append: '-' | append: forloop.index | slugify -%}
+{%- assign screen = include.screen -%}
 <section class="screen" id="{{ id }}">
     {% include {{ screen.type | prepend: "screens/" | append: ".html"}} screen=screen %}
-    <div class="caption">
-        {{- screen.caption | markdownify -}}
-    </div>
-
-    {%- assign next_index = forloop.index | plus: 1 -%}
-    {% if next_index <= page.screens.size && forloop.index > 1%}
-        {% include buttons/next-button.html next_index=next_index %}
-    {% endif %}
 </section>

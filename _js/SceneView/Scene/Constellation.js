@@ -48,7 +48,7 @@ export default class Constellation {
         this.geometry.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
 
         material = new PointsMaterial({
-            size: 2,
+            size: 1,
             sizeAttenuation: true,
             transparent: true,
             map: this.texture
@@ -93,7 +93,7 @@ export default class Constellation {
 
         this.particles.add(this.line);
         const positions = this.line.geometry.attributes.position.array;
-        console.log(positions)
+
     }
     getPoint(position) {
         return new Vector3(position[0], position[1], position[2])

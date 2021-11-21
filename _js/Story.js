@@ -2,6 +2,7 @@ import TWEEN from '@tweenjs/tween.js';
 import SceneView from './SceneView/SceneView';
 import ScreenManager from './Screens/ScreenManager';
 import AudioManager from './Audio/AudioManager';
+import CaptionManager from './Captions/CaptionManager';
 
 export default class Story{
     constructor(app) {
@@ -9,6 +10,7 @@ export default class Story{
         this.sceneView = new SceneView(this);
         this.audioManager = new AudioManager(this);
         this.screenManager = new ScreenManager(this);
+        this.captions = new CaptionManager(this);
         this.bind();
         this.state = {
             isPlaying: false
@@ -19,7 +21,7 @@ export default class Story{
     bind() {
         document.querySelector('.js-start').addEventListener('click', () => {
             this.start();
-            this.sceneView.next();
+            this.next();
         });
 
         window.addEventListener('keydown', (e) => {
@@ -31,6 +33,7 @@ export default class Story{
     next() {
         this.screenManager.next();
         this.sceneView.next();
+        this.captions.next();
     }
     start() {
         if (this.state.isPlaying) return;

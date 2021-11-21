@@ -43,13 +43,13 @@ export default class PointsClouds {
 
         geometry.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
 
-        material = new PointsMaterial( { size: 2, sizeAttenuation: true, map: this.texture, transparent: true } );
+        material = new PointsMaterial( { size: 0.4, sizeAttenuation: true, map: this.texture, transparent: true } );
         // material.color.setHSL(Math.random(), Math.random(), Math.random());
         const particles = new Points( geometry, material );
 
         particles.rotation.x = Math.random() * 6;
         particles.rotation.y = Math.random() * 6;
-        particles.rotation.z = Math.random() * 6;
+        particles.rotation.z = Math.random() * 6 + 5;
 
         this.group.add(particles);
     }
@@ -57,7 +57,7 @@ export default class PointsClouds {
         this.tick += 1;
 
         this.group.children.forEach( (cloud, i) => {
-            cloud.rotation.y += 0.0001 * (i % 5 + 1)
+            // cloud.rotation.y += 0.0001 * (i % 5 + 1)
             cloud.material.opacity = Math.min(0.4, Math.sin((this.tick + i * 100) / 100));
         });
         

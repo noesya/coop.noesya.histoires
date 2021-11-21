@@ -64,8 +64,8 @@ export default class SceneView extends SceneBase {
             .to({
                 x: this.system.position.x - 5,
                 y: this.system.position.y - 3
-            }, 1000)
-            .easing(Easing.Quadratic.Out)
+            }, 5000)
+            .easing(Easing.Quadratic.InOut)
             .start();
     }
 
